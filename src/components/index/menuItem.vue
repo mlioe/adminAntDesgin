@@ -33,7 +33,6 @@ export default {
 		}
 	},
 	created() {
-		console.log(this.$route)
 		this.selectedKeys = this.$route.path
 	},
 	methods: {

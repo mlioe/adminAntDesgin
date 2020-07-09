@@ -22,7 +22,8 @@ export default {
 	data() {
 		return {
 			childIsCollapse: false,
-			selectedKeys:"/demo2"
+			selectedKeys: '',
+			screenWidth:document.body.clientWidth
 		};
 	},
 	props: {
@@ -33,16 +34,27 @@ export default {
 		}
 	},
 	created() {
-		this.selectedKeys = this.$route.path
+		this.selectedKeys = this.$route.path;
+	},
+	mounted() {
+		const that = this
+		window.onresize = () =>{
+			return(()=>{
+				that.screenWidth = document.body.clientWidth
+			})
+		}
 	},
 	methods: {
-		menuClick(e){
-			this.$router.push(e.key)
+		menuClick(e) {
+			this.$router.push(e.key);
 		}
 	},
 	watch: {
 		isCollapse(val) {
 			this.childIsCollapse = val;
+		},
+		screenWidth(val){
+			console.log(val)
 		}
 	}
 };

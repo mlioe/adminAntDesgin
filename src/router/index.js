@@ -27,6 +27,11 @@ Vue.use(VueRouter)
 			meta:{title:'demo2',hasSubMenu:false,icon:'home'}
 		}
 	]
+  },{
+	  path:'*',
+	  name:'404',
+	  component: () => import('../views/404/404.vue'),
+	  meta:{title:'404'}
   }
 ]
 

@@ -1,5 +1,8 @@
 <template>
-	<div>demo</div>
+	<div>demo
+	
+		<button @click="Click404">去404页面</button>
+	</div>
 </template>
 
 <script>
@@ -10,6 +13,12 @@ export default {
 		axios.get('/api/japi/toh').then(e => {
 			// console.log(e)
 		});
+		
+	},
+	methods:{
+		Click404(){
+			this.$router.push('/demo2555')
+		}
 	}
 };
 </script>

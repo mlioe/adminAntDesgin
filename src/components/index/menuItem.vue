@@ -1,6 +1,6 @@
 <template>
 	<div :style="!childIsCollapse ? 'width: 220px;' : ''">
-		<a-menu mode="inline" theme="dark" :inline-collapsed="childIsCollapse" @click="menuClick" :default-selected-keys="[selectedKeys]">
+		<a-menu mode="inline" theme="dark" :inline-collapsed="childIsCollapse" @click="menuClick" :selectedKeys="[selectedKeys]">
 			<a-sub-menu v-for="child in route" :key="child.path" v-if="child.meta.hasSubMenu">
 				<span slot="title">
 					<a-icon type="mail" />
@@ -47,6 +47,9 @@ export default {
 	methods: {
 		menuClick(e) {
 			this.$router.push(e.key);
+		},
+		routerChange(){
+			this.selectedKeys = this.$route.path
 		}
 	},
 	watch: {
@@ -54,7 +57,9 @@ export default {
 			this.childIsCollapse = val;
 		},
 		screenWidth(val){
-			console.log(val)
+		},
+		$route(val){
+			this.routerChange()
 		}
 	}
 };

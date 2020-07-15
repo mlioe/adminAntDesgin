@@ -5,7 +5,7 @@
 		<div class="right">
 			<div style="display: flex;align-items: center;margin-right: 20px;">
 				<img src="../../assets/avatar_15.png" alt="头像" class="Img" />
-				<div>admin</div>
+				<div>{{userName}}</div>
 			</div>
 			<ul class="ul">
 				<li>个人中心</li>
@@ -17,7 +17,11 @@
 </template>
 
 <script>
+	import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 	export default{
+		computed:{
+			...mapState(['userName'])
+		},
 		methods:{
 			indexHandle(){
 				this.$emit('indexHandle')

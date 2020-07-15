@@ -1,26 +1,45 @@
 <template>
-	<div>demo
-	
-		<button @click="Click404">去404页面</button>
+	<div class="box">
+			<div style="flex-direction: column;display: flex;text-align: center;">
+				<div>{{userName}}</div>
+				<button class="btn" @click="Click404">去404页面</button>
+				<button class="btn" @click="set">改名</button>
+				<button class="btn" @click="actionSet">异步改名</button>
+			</div>
 	</div>
 </template>
 
 <script>
-import axios from 'axios';
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+import demoJs from '../../server/demo.js'
 export default {
+	 computed: {
+	 ...mapState(['userName'])
+	 },
 	created() {
-		// console.log('demo')
-		axios.get('/api/japi/toh').then(e => {
-			// console.log(e)
-		});
-		
+		this.demoRequest()
 	},
 	methods:{
+		...mapMutations(['setUserName']),
+		...mapActions(['actionSetName']),
 		Click404(){
 			this.$router.push('/demo2555')
+		},
+		set(){
+			this.setUserName('改成这样')
+		},
+		actionSet(){
+			this.actionSetName('异步改名字')
+		},
+		async demoRequest(){
+			const data = await demoJs.demoApi()
+			console.log(data)
 		}
 	}
 };
 </script>
 
-<style></style>
+<style scoped>
+	.box{display: flex;align-items: center;justify-content:center;height: 300px;}
+	.btn{margin-top: 10px;}
+</style>

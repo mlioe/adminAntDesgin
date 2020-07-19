@@ -32,7 +32,7 @@ export default {
 			this.actionSetName('异步改名字')
 		},
 		async demoRequest(){
-			const data = await demoJs.demoApi()
+			const data = await demoJs.demoApi({name:'zs',age:12},{'telo':'zhangsan'}) //第一个是data,第二个参是header,一般是写死的
 			console.log(data)
 		}
 	}

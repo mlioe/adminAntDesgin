@@ -2,7 +2,7 @@
 	<div class="box">
 		<a-breadcrumb>
 			<a-breadcrumb-item v-for="item in breadList" :key="item.meta.title">
-				<router-link :to="item.path">
+				<router-link :to="item.path === ''  ? '/':item.meta.hasSubMenu ? '':item.path">
 				    {{ item.meta.title }}
 				</router-link>
 			</a-breadcrumb-item>

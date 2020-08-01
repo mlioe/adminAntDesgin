@@ -1,14 +1,14 @@
 <template>
 	<div :style="!childIsCollapse ? 'width: 220px;' : ''">
 		<a-menu mode="inline" theme="dark" :inline-collapsed="childIsCollapse" @click="menuClick" :selectedKeys="[selectedKeys]">
-			<a-sub-menu v-for="child in route" :key="child.path" v-if="child.meta.hasSubMenu">
+			<a-sub-menu v-for="child in route" :key="child.name" v-if="child.meta.hasSubMenu">
 				<span slot="title">
 					<a-icon type="mail" />
 					<span>{{ child.meta.title }}</span>
 				</span>
 				<MenuItem :route="child.children" :isCollapse="childIsCollapse"></MenuItem>
 			</a-sub-menu>
-			<a-menu-item key="5" :key="child.path" v-else>
+			<a-menu-item key="5" :key="child.name" v-else>
 				<a-icon :type="child.meta.icon" />
 				<span>{{ child.meta.title }}</span>
 			</a-menu-item>
@@ -34,7 +34,7 @@ export default {
 		}
 	},
 	created() {
-		this.selectedKeys = this.$route.path;
+		this.selectedKeys = this.$route.name;
 	},
 	mounted() {
 		const that = this
@@ -46,10 +46,10 @@ export default {
 	},
 	methods: {
 		menuClick(e) {
-			this.$router.push(e.key);
+			this.$router.push('/'+e.key);
 		},
 		routerChange(){
-			this.selectedKeys = this.$route.path
+			this.selectedKeys = this.$route.name
 		}
 	},
 	watch: {

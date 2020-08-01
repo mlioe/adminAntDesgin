@@ -16,15 +16,21 @@ Vue.use(VueRouter)
 	children:[
 		{
 			path:'/demo',
-			name:'Demo',
+			name:'demo',
 			component: () => import('../views/demo/index.vue'),
 			meta:{title:'demo',hasSubMenu:false,icon:'home'}
 		},
 		{
 			path:'/demo2',
-			name:'Demo2',
+			name:'demo2',
 			component: () => import('../views/demo2/index.vue'),
 			meta:{title:'demo2',hasSubMenu:false,icon:'home'}
+		},
+		{
+			path:'/demo3/:pageNumber?',
+			name:'demo3',
+			component: () => import('../views/demo3/demo3.vue'),
+			meta:{title:'分页路由demo',hasSubMenu:false,icon:'home'}
 		}
 	]
   },{

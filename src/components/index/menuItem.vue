@@ -1,6 +1,6 @@
 <template>
 	<div :style="!childIsCollapse ? 'width: 220px;' : ''">
-		<a-menu mode="inline" theme="dark" :inline-collapsed="childIsCollapse" @click="menuClick" :selectedKeys="[selectedKeys]">
+		<a-menu mode="inline" theme="dark" :inline-collapsed="childIsCollapse" @click="menuClick" :selectedKeys="[selectedKeys]" :defaultOpenKeys="defaultOpenKeys">
 			<a-sub-menu v-for="child in route" :key="child.name" v-if="child.meta.hasSubMenu">
 				<span slot="title">
 					<a-icon type="mail" />
@@ -23,7 +23,8 @@ export default {
 		return {
 			childIsCollapse: false,
 			selectedKeys: '',
-			screenWidth:document.body.clientWidth
+			screenWidth:document.body.clientWidth,
+			defaultOpenKeys:[]
 		};
 	},
 	props: {
@@ -35,6 +36,12 @@ export default {
 	},
 	created() {
 		this.selectedKeys = this.$route.name;
+		//要展开的面板
+		let selectKeyArr = []
+		this.$route.matched.map(item=>{
+			selectKeyArr.push(item.name)
+		})
+		this.defaultOpenKeys = selectKeyArr
 	},
 	mounted() {
 		const that = this

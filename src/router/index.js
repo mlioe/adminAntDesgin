@@ -34,6 +34,13 @@ Vue.use(VueRouter)
 		}
 	]
   },{
+	path:'/login',
+	name:'login',
+	component: () => import('../views/auth/login.vue'),
+	meta:{
+		title:'登录'
+	}
+  },{
 	  path:'*',
 	  name:'404',
 	  component: () => import('../views/404/404.vue'),
